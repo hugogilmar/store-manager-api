@@ -1,0 +1,103 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mysql",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "Store": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Product": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "ProductCategory": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Unit": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "UnitCategory": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Provider": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Provision": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "ProductProvision": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "PaymentMethod": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Order": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Invoice": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "OrderLine": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "ProvisionTransaction": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Purchase": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "PurchaseLine": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Manager": {
+    "dataSource": "mysql",
+    "public": true
+  }
+}

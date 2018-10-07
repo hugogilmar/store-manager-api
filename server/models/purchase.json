@@ -1,0 +1,51 @@
+{
+  "name": "Purchase",
+  "plural": "purchases",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "number": {
+      "type": "number",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "total": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "total_taxes": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "total_discounts": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "total_charges": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

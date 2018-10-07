@@ -1,0 +1,67 @@
+{
+  "name": "Invoice",
+  "plural": "invoices",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "number": {
+      "type": "number",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "total": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "taxes_total": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "discounts_total": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "charges_total": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    }
+  },
+  "validations": [],
+  "relations": {
+    "order": {
+      "type": "belongsTo",
+      "model": "Order",
+      "foreignKey": ""
+    },
+    "paymentMethod": {
+      "type": "belongsTo",
+      "model": "PaymentMethod",
+      "foreignKey": ""
+    },
+    "store": {
+      "type": "belongsTo",
+      "model": "Store",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
