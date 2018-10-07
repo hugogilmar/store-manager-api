@@ -1,0 +1,34 @@
+{
+  "name": "ProvisionTransaction",
+  "plural": "provision_transactions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "quantity": {
+      "type": "number",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "provision": {
+      "type": "belongsTo",
+      "model": "Provision",
+      "foreignKey": ""
+    },
+    "unit": {
+      "type": "belongsTo",
+      "model": "Unit",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

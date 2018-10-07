@@ -4,9 +4,8 @@
     "connector": "memory"
   },
   "mysql": {
-    "host": "localhost",
+    "host": "db",
     "port": 3306,
-    "url": "",
     "database": "store_development",
     "password": "store",
     "name": "mysql",

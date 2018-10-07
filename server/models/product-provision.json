@@ -1,0 +1,35 @@
+{
+  "name": "ProductProvision",
+  "plural": "product_provisions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "quantity": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "product": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignKey": ""
+    },
+    "provision": {
+      "type": "belongsTo",
+      "model": "Provision",
+      "foreignKey": ""
+    },
+    "unit": {
+      "type": "belongsTo",
+      "model": "Unit",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

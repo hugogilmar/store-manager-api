@@ -1,0 +1,21 @@
+version: "2"
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=store_development
+      - MYSQL_USER=store
+      - MYSQL_PASSWORD=store
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+  web:
+    build: ./docker/web
+    user: 'node'
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db

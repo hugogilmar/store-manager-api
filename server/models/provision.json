@@ -1,0 +1,46 @@
+{
+  "name": "Provision",
+  "plural": "provisions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "minimum": {
+      "type": "number",
+      "required": true
+    },
+    "maximum": {
+      "type": "number",
+      "required": true
+    },
+    "stock": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "provider": {
+      "type": "belongsTo",
+      "model": "Provider",
+      "foreignKey": ""
+    },
+    "unit": {
+      "type": "belongsTo",
+      "model": "Unit",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

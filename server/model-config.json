@@ -14,25 +14,90 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "mysql",
+    "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
+  },
+  "Store": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Product": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "ProductCategory": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Unit": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "UnitCategory": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Provider": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Provision": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "ProductProvision": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "PaymentMethod": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Order": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Invoice": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "OrderLine": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "ProvisionTransaction": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Purchase": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "PurchaseLine": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Manager": {
+    "dataSource": "mysql",
+    "public": true
   }
 }
