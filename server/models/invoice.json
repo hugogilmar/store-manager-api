@@ -22,21 +22,21 @@
       "precision": 10,
       "scale": 2
     },
-    "taxes_total": {
+    "taxesTotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
       "precision": 10,
       "scale": 2
     },
-    "discounts_total": {
+    "discountsTotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
       "precision": 10,
       "scale": 2
     },
-    "charges_total": {
+    "chargesTotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
