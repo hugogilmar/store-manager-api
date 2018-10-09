@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.2
+
+- Standarize column names to camel case
+
 ## v0.1.1
 
 - Bufgix: Error: Pool is closed on request related to issue #1
