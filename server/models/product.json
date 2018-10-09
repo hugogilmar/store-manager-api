@@ -22,7 +22,7 @@
       "precision": 10,
       "scale": 2
     },
-    "special_price": {
+    "specialPrice": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
