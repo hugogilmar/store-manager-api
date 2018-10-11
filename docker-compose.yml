@@ -10,6 +10,8 @@ services:
       - MYSQL_USER=store
       - MYSQL_PASSWORD=store
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    volumes:
+      - mysql:/var/lib/mysql
   web:
     build: ./docker/web
     user: 'node'
@@ -19,3 +21,6 @@ services:
       - .:/home/node/app
     depends_on:
       - db
+volumes:
+  mysql:
+    driver: local
