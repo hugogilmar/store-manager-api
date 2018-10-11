@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.3
+
+- Persistence volume for MySQL data added
+
 ## v0.1.2
 
 - Standarize column names to camel case
