@@ -50,6 +50,11 @@
       "type": "belongsTo",
       "model": "Store",
       "foreignKey": ""
+    },
+    "employee": {
+      "type": "belongsTo",
+      "model": "Employee",
+      "foreignKey": ""
     }
   },
   "acls": [],
