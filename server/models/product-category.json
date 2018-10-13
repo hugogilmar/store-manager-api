@@ -10,6 +10,10 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "code": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
