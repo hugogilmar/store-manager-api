@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.4
+
+- Auto-update instead for auto-migrate boot script
+- Employees endpoint added
+- Store field added on products
+- Code field added on product categories
+- Employee field added on orders
+- Unused common models file removed
+
 ## v0.1.3
 
 - Persistence volume for MySQL data added
