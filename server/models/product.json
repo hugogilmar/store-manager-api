@@ -36,6 +36,11 @@
       "type": "belongsTo",
       "model": "ProductCategory",
       "foreignKey": ""
+    },
+    "store": {
+      "type": "belongsTo",
+      "model": "Store",
+      "foreignKey": ""
     }
   },
   "acls": [],

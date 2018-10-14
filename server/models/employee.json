@@ -1,6 +1,6 @@
 {
-  "name": "ProductCategory",
-  "plural": "product_categories",
+  "name": "Employee",
+  "plural": "employees",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,14 +10,16 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "code": {
-      "type": "string",
-      "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "store": {
+      "type": "belongsTo",
+      "model": "Store",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
