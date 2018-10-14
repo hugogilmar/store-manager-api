@@ -10,15 +10,7 @@ module.exports = function(app) {
     }
   }
 
-  for (var model in app.models) {
-    ds.isActual(model, function (error, actual) {
-      throwError(error);
-
-      if (!actual) {
-        ds.autoupdate(model, function (error) {
-          throwError(error);
-        });
-      }
-    });
-  };
+  ds.autoupdate(function (error) {
+    throwError(error);
+  });
 };
