@@ -46,6 +46,10 @@
     "subtotal": {
       "type": "number",
       "required": true
+    },
+    "status": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
