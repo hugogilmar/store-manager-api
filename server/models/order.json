@@ -42,6 +42,10 @@
       "dataType": "decimal",
       "precision": 10,
       "scale": 2
+    },
+    "subtotal": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],

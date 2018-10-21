@@ -53,6 +53,10 @@
     "comment": {
       "type": "string",
       "required": true
+    },
+    "subtotal": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
