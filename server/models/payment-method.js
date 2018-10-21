@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(Paymentmethod) {
+module.exports = function(PaymentMethod) {
 
 };
