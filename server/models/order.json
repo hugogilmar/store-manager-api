@@ -63,6 +63,16 @@
       "type": "belongsTo",
       "model": "Employee",
       "foreignKey": ""
+    },
+    "orderLines": {
+      "type": "hasMany",
+      "model": "OrderLine",
+      "foreignKey": ""
+    },
+    "invoices": {
+      "type": "hasMany",
+      "model": "Invoice",
+      "foreignKey": ""
     }
   },
   "acls": [],
