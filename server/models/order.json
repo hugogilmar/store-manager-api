@@ -45,7 +45,10 @@
     },
     "subtotal": {
       "type": "number",
-      "required": true
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
     },
     "status": {
       "type": "number",
