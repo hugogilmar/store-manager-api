@@ -1833,6 +1833,11 @@ loopback-connector@^4.4.0:
     strong-globalize "^4.1.1"
     uuid "^3.0.1"
 
+loopback-console@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/loopback-console/-/loopback-console-1.1.0.tgz#adff8f9c8c74a3809b97829f39069021c7971003"
+  integrity sha1-rf+PnIx0o4Cbl4KfOQaQIceXEAM=
+
 loopback-datasource-juggler@^3.0.0, loopback-datasource-juggler@^3.18.0:
   version "3.24.0"
   resolved "https://registry.yarnpkg.com/loopback-datasource-juggler/-/loopback-datasource-juggler-3.24.0.tgz#d57517a8b0fd8df7dd50ed17804948c96641ad80"

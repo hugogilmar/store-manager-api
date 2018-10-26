@@ -51,8 +51,14 @@
       "required": true
     },
     "comment": {
-      "type": "string",
-      "required": true
+      "type": "string"
+    },
+    "subtotal": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
     }
   },
   "validations": [],

@@ -15,28 +15,7 @@
       "type": "date",
       "required": true
     },
-    "total": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2
-    },
-    "taxesTotal": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2
-    },
-    "discountsTotal": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2
-    },
-    "chargesTotal": {
+    "amount": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
@@ -54,11 +33,6 @@
     "paymentMethod": {
       "type": "belongsTo",
       "model": "PaymentMethod",
-      "foreignKey": ""
-    },
-    "store": {
-      "type": "belongsTo",
-      "model": "Store",
       "foreignKey": ""
     }
   },

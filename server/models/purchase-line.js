@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(Purchaseline) {
+module.exports = function(PurchaseLine) {
 
 };

@@ -42,6 +42,24 @@
       "dataType": "decimal",
       "precision": 10,
       "scale": 2
+    },
+    "subtotal": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
+    },
+    "status": {
+      "type": "number",
+      "required": true
+    },
+    "balance": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
     }
   },
   "validations": [],
@@ -54,6 +72,16 @@
     "employee": {
       "type": "belongsTo",
       "model": "Employee",
+      "foreignKey": ""
+    },
+    "orderLines": {
+      "type": "hasMany",
+      "model": "OrderLine",
+      "foreignKey": ""
+    },
+    "invoices": {
+      "type": "hasMany",
+      "model": "Invoice",
       "foreignKey": ""
     }
   },
