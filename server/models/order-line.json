@@ -51,8 +51,7 @@
       "required": true
     },
     "comment": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "subtotal": {
       "type": "number",
