@@ -1,10 +1,7 @@
 #!/bin/sh
 set -e
 
-# Install de dependencies.
-yarn install
-
-# Wait for PostgreSQL
+# Wait for MySQL
 until nc -z -v -w30 db 3306
 do
   echo 'Waiting for MySQL...'
