@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0
+
+- Order hooks added for total calculation
+- Order hooks added for balance calculation
+- Order line hooks added for total calculation
+
 ## v0.1.4
 
 - Auto-update instead for auto-migrate boot script
