@@ -15,7 +15,7 @@
       "type": "date",
       "required": true
     },
-    "total": {
+    "amount": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
