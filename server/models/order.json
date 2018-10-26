@@ -53,6 +53,13 @@
     "status": {
       "type": "number",
       "required": true
+    },
+    "balance": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2
     }
   },
   "validations": [],
