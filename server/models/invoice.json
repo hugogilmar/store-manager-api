@@ -21,31 +21,6 @@
       "dataType": "decimal",
       "precision": 10,
       "scale": 2
-    },
-    "taxesTotal": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2
-    },
-    "discountsTotal": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2
-    },
-    "chargesTotal": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2
-    },
-    "subtotal": {
-      "type": "number",
-      "required": true
     }
   },
   "validations": [],
@@ -58,11 +33,6 @@
     "paymentMethod": {
       "type": "belongsTo",
       "model": "PaymentMethod",
-      "foreignKey": ""
-    },
-    "store": {
-      "type": "belongsTo",
-      "model": "Store",
       "foreignKey": ""
     }
   },
