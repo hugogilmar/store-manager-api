@@ -3,18 +3,15 @@ services:
   db:
     image: mysql:5.7
     restart: always
+    env_file: .env
     ports:
       - 3306:3306
-    environment:
-      - MYSQL_DATABASE=store_development
-      - MYSQL_USER=store
-      - MYSQL_PASSWORD=store
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
     volumes:
       - mysql:/var/lib/mysql
   web:
     build: ./docker/web
     user: 'node'
+    env_file: .env
     ports:
       - 3000:3000
     volumes:
