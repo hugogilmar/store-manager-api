@@ -14,98 +14,98 @@
     ]
   },
   "User": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": false
   },
   "ACL": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": false
   },
   "Store": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Product": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "ProductCategory": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Unit": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "UnitCategory": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Provider": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Provision": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "ProductProvision": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "PaymentMethod": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Order": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Invoice": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "OrderLine": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "ProvisionTransaction": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Purchase": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "PurchaseLine": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Manager": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Employee": {
-    "dataSource": "mysql",
+    "dataSource": "database",
     "public": true
   },
   "Email": {
-    "dataSource": "smtp",
+    "dataSource": "mailer",
     "public": false
   }
 }

@@ -1,29 +1,8 @@
 {
-  "mysql": {
-    "host": "db",
-    "port": 3306,
-    "database": "store_development",
-    "password": "store",
-    "name": "mysql",
-    "user": "store",
-    "connector": "mysql"
+  "database": {
+    "connector": "memory"
   },
-  "smtp": {
-    "connector": "mail",
-    "transports": [
-      {
-        "type": "smtp",
-        "host": "smtp.mailtrap.io",
-        "secure": false,
-        "port": 2525,
-        "tls": {
-          "rejectUnauthorized": false
-        },
-        "auth": {
-          "user": "a79c9b31e096ca",
-          "pass": "6c30d5db6ca75c"
-        }
-      }
-    ]
+  "mailer": {
+    "connector": "mail"
   }
 }
