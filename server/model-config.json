@@ -103,5 +103,9 @@
   "Employee": {
     "dataSource": "mysql",
     "public": true
+  },
+  "Email": {
+    "dataSource": "smtp",
+    "public": false
   }
 }

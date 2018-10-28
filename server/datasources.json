@@ -1,8 +1,4 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
-  },
   "mysql": {
     "host": "db",
     "port": 3306,
@@ -11,5 +7,23 @@
     "name": "mysql",
     "user": "store",
     "connector": "mysql"
+  },
+  "smtp": {
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.mailtrap.io",
+        "secure": false,
+        "port": 2525,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "a79c9b31e096ca",
+          "pass": "6c30d5db6ca75c"
+        }
+      }
+    ]
   }
 }
