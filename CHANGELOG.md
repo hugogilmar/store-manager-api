@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.0
+
+- Authenticated request for all endpoints
+- Datasources renamed
+- Datasource credentias from .env file
+
 ## v0.2.0
 
 - Order hooks added for total calculation
