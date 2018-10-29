@@ -1,8 +1,10 @@
 {
   "database": {
+    "name": "database",
     "connector": "memory"
   },
   "mailer": {
+    "name": "mailer",
     "connector": "mail"
   }
 }
