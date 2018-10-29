@@ -1,15 +1,10 @@
 {
-  "db": {
-    "name": "db",
+  "database": {
+    "name": "database",
     "connector": "memory"
   },
-  "mysql": {
-    "host": "db",
-    "port": 3306,
-    "database": "store_development",
-    "password": "store",
-    "name": "mysql",
-    "user": "store",
-    "connector": "mysql"
+  "mailer": {
+    "name": "mailer",
+    "connector": "mail"
   }
 }
