@@ -52,7 +52,7 @@ module.exports = function(Order) {
         return sum + invoice.amount;
       }, 0);
 
-      balance = self.total - amount;
+      balance = amount - self.total;
 
       self.balance = balance;
 
@@ -63,12 +63,4 @@ module.exports = function(Order) {
       callback();
     });
   }
-
-  Order.observe('before save', function (ctx, next) {
-    ctx.instance.calculateTotals(next);
-  });
-
-  Order.observe('before save', function (ctx, next) {
-    ctx.instance.calculateBalance(next);
-  });
 };
