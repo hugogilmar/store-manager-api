@@ -63,12 +63,4 @@ module.exports = function(Order) {
       callback();
     });
   }
-
-  Order.observe('before save', function (ctx, next) {
-    ctx.instance.calculateTotals(next);
-  });
-
-  Order.observe('before save', function (ctx, next) {
-    ctx.instance.calculateBalance(next);
-  });
 };
