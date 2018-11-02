@@ -52,7 +52,7 @@ module.exports = function(Order) {
         return sum + invoice.amount;
       }, 0);
 
-      balance = self.total - amount;
+      balance = amount - self.total;
 
       self.balance = balance;
 
