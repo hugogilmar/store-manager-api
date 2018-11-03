@@ -11,10 +11,6 @@
       "type": "number",
       "required": true
     },
-    "date": {
-      "type": "date",
-      "required": true
-    },
     "amount": {
       "type": "number",
       "required": true,
