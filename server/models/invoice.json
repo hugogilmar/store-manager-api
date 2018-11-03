@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "number": {
+    "referenceNumber": {
       "type": "number",
       "required": true
     },
