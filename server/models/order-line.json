@@ -94,5 +94,96 @@
       "permission": "DENY"
     }
   ],
-  "methods": {}
+  "methods": {
+    "productsReport": {
+      "accepts": [
+        {
+          "arg": "storeId",
+          "type": "number",
+          "required": true,
+          "description": "Store id",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateFrom",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateTo",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "type": "array",
+          "root": true,
+          "description": "Order line product list"
+        }
+      ],
+      "description": "Generate order line products report",
+      "http": [
+        {
+          "path": "/productsReport",
+          "verb": "post"
+        }
+      ]
+    },
+    "productCategoriesReport": {
+      "accepts": [
+        {
+          "arg": "storeId",
+          "type": "number",
+          "required": true,
+          "description": "Store id",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateFrom",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateTo",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "type": "array",
+          "root": true,
+          "description": "Order line product category list"
+        }
+      ],
+      "description": "Generate order line product categories report",
+      "http": [
+        {
+          "path": "/productCategoriesReport",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
