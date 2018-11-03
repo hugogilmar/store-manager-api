@@ -66,6 +66,29 @@
       "precision": 10,
       "scale": 2,
       "default": 0
+    },
+    "location": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "discountAmount": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2,
+      "default": 0
+    },
+    "billable": {
+      "type": "boolean",
+      "required": true
+    },
+    "comment": {
+      "type": "string"
+    },
+    "guests": {
+      "type": "number"
     }
   },
   "validations": [],
