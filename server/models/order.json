@@ -105,5 +105,51 @@
       "permission": "DENY"
     }
   ],
-  "methods": {}
+  "methods": {
+    "paymentMethodsReport": {
+      "accepts": [
+        {
+          "arg": "storeId",
+          "type": "number",
+          "required": true,
+          "description": "Store id",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateFrom",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateTo",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "type": "array",
+          "root": true,
+          "description": "Order payment methods list"
+        }
+      ],
+      "description": "Generate order payment methods report",
+      "http": [
+        {
+          "path": "/paymentMethodsReport",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
