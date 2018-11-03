@@ -107,5 +107,9 @@
   "Email": {
     "dataSource": "mailer",
     "public": false
+  },
+  "Charge": {
+    "dataSource": "database",
+    "public": true
   }
 }
