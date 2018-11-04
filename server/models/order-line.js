@@ -50,6 +50,11 @@ module.exports = function(OrderLine) {
       subtotal = price * self.quantity;
       subtotalWithOutTaxes = subtotal / 1.13;
       taxesTotal = subtotal - subtotalWithOutTaxes;
+
+      if (self.discountAmount > 0) {
+        discountsTotal = subtotal * (self.discountAmount / 100);
+      }
+
       total = subtotal - discountsTotal;
 
       self.price = price;
