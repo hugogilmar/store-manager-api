@@ -111,5 +111,9 @@
   "Charge": {
     "dataSource": "database",
     "public": true
+  },
+  "OrderCharge": {
+    "dataSource": "database",
+    "public": true
   }
 }
