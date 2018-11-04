@@ -35,14 +35,6 @@
       "scale": 2,
       "default": 0
     },
-    "chargesTotal": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2,
-      "default": 0
-    },
     "price": {
       "type": "number",
       "required": true,
