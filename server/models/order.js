@@ -21,42 +21,66 @@ module.exports = function(Order) {
 
   Order.prototype.calculateTotals = function (callback, autosave = false) {
     let self = this;
-    let subtotal = 0;
-    let total = 0;
     let taxesTotal = 0;
     let discountsTotal = 0;
     let chargesTotal = 0;
+    let subtotal = 0;
+    let total = 0;
 
-    this.orderLines.find().then(function (orderLines) {
-      subtotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.subtotal;
-      }, 0);
+    let orderLines = this.orderLines.find().then(function (orderLines) {
+      let billableOrderLines = orderLines.filter(function (orderLine) {
+        return orderLine.billable;
+      });
 
-      discountsTotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.discountsTotal;
-      }, 0);
+      let orderLinesWithOutDiscount = billableOrderLines.filter(function (orderLine) {
+        return orderLine.discountAmount <= 0;
+      });
 
-      chargesTotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.chargesTotal;
-      }, 0);
+      let orderLinesWithDiscount = billableOrderLines.filter(function (orderLine) {
+        return orderLine.discountAmount > 0;
+      });
 
-      taxesTotal = orderLines.reduce(function (sum, orderLine) {
+      taxesTotal = billableOrderLines.reduce(function (sum, orderLine) {
         return sum + orderLine.taxesTotal;
       }, 0);
 
-      total = subtotal + chargesTotal - discountsTotal;
+      let subtotalOrderLinesWithOutDiscount = orderLinesWithOutDiscount.reduce(function (sum, orderLine) {
+        return sum + orderLine.subtotal;
+      }, 0);
 
-      self.subtotal = subtotal;
-      self.taxesTotal = taxesTotal;
-      self.discountsTotal = discountsTotal;
-      self.chargesTotal = chargesTotal;
-      self.total = total;
+      let subtotalOrderLinesWithDiscount = orderLinesWithDiscount.reduce(function (sum, orderLine) {
+        return sum + orderLine.subtotal;
+      }, 0);
 
-      if (autosave) {
-        self.save();
+      if (self.discountAmount > 0 && subtotalOrderLinesWithOutDiscount > 0) {
+        discountsTotal += subtotalOrderLinesWithOutDiscount * (self.discountAmount / 100);
       }
 
-      callback();
+      if (subtotalOrderLinesWithDiscount > 0) {
+        discountsTotal += subtotalOrderLinesWithDiscount;
+      }
+
+      subtotal = subtotalOrderLinesWithDiscount + subtotalOrderLinesWithOutDiscount;
+
+      self.orderCharges.find().then(function (orderCharges) {
+        chargesTotal = orderCharges.reduce(function (sum, orderCharge) {
+          return sum + (subtotal * (orderCharge.amount / 100));
+        }, 0);
+
+        total = subtotal + chargesTotal - discountsTotal;
+
+        self.subtotal = subtotal;
+        self.taxesTotal = taxesTotal;
+        self.discountsTotal = discountsTotal;
+        self.chargesTotal = chargesTotal;
+        self.total = total;
+
+        if (autosave) {
+          self.save();
+        }
+
+        callback();
+      });
     });
   }
 
