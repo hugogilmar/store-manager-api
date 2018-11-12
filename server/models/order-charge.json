@@ -51,5 +51,51 @@
       "permission": "DENY"
     }
   ],
-  "methods": {}
+  "methods": {
+    "chargesReport": {
+      "accepts": [
+        {
+          "arg": "storeId",
+          "type": "number",
+          "required": true,
+          "description": "Store id",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateFrom",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateTo",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "type": "array",
+          "root": true,
+          "description": "Order charges list"
+        }
+      ],
+      "description": "Generate order charges report",
+      "http": [
+        {
+          "path": "/chargesReport",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
