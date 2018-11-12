@@ -5,7 +5,7 @@ module.exports = function(Invoice) {
 
   Invoice.observe('after save', function (ctx, next) {
     app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
-      order.calculateBalance(next, true);
+      order.calculateTotals(next, true);
     });
   });
 };
