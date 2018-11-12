@@ -1,74 +1,83 @@
 'use strict';
 
 module.exports = function(Order) {
+  const app = require('../../server/server');
+
+  Order.storesReport = function(dateFrom, dateTo, callback) {
+    var query = "SELECT s.name, COUNT(*) AS quantity, SUM(o.total) AS total FROM `Order` o LEFT JOIN `Store` s ON o.storeId = s.id WHERE o.date >= ? AND o.date <= ? GROUP BY s.name ORDER BY quantity DESC";
+    var params = [dateFrom, dateTo];
+    var data = [];
+
+    app.dataSources.database.connector.execute(query, params, function(error, rows) {
+      if (error) {
+        console.log(error);
+      } else {
+        data = rows;
+      }
+
+      callback(null, data);
+    });
+  };
+
   Order.prototype.calculateTotals = function (callback, autosave = false) {
     let self = this;
-    let subtotal = 0;
-    let total = 0;
     let taxesTotal = 0;
     let discountsTotal = 0;
     let chargesTotal = 0;
-
-    this.orderLines.find().then(function (orderLines) {
-      subtotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.subtotal;
-      }, 0);
-
-      discountsTotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.discountsTotal;
-      }, 0);
-
-      chargesTotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.chargesTotal;
-      }, 0);
-
-      taxesTotal = orderLines.reduce(function (sum, orderLine) {
-        return sum + orderLine.taxesTotal;
-      }, 0);
-
-      total = subtotal + chargesTotal - discountsTotal;
-
-      self.subtotal = subtotal;
-      self.taxesTotal = taxesTotal;
-      self.discountsTotal = discountsTotal;
-      self.chargesTotal = chargesTotal;
-      self.total = total;
-
-      if (autosave) {
-        self.save();
-      }
-
-      callback();
-    });
-  }
-
-  Order.prototype.calculateBalance = function (callback, autosave = false) {
-    let self = this;
+    let subtotal = 0;
+    let total = 0;
     let amount = 0;
     let balance = 0;
 
-    this.invoices.find().then(function (invoices) {
-      amount = invoices.reduce(function (sum, invoice) {
-        return sum + invoice.amount;
+    this.orderLines.find().then(function (orderLines) {
+      let billableOrderLines = orderLines.filter(function (orderLine) {
+        return orderLine.billable;
+      });
+
+      taxesTotal = billableOrderLines.reduce(function (sum, orderLine) {
+        return sum + orderLine.taxesTotal;
       }, 0);
 
-      balance = self.total - amount;
+      discountsTotal = billableOrderLines.reduce(function (sum, orderLine) {
+        return sum + orderLine.discountsTotal;
+      }, 0);
 
-      self.balance = balance;
+      subtotal = billableOrderLines.reduce(function (sum, orderLine) {
+        return sum + orderLine.total;
+      }, 0);
 
-      if (autosave) {
-        self.save();
-      }
+      self.orderCharges.find().then(function (orderCharges) {
+        chargesTotal = orderCharges.reduce(function (sum, orderCharge) {
+          let total = subtotal * (orderCharge.amount / 100);
+          orderCharge.total = total;
+          orderCharge.save();
 
-      callback();
+          return sum + (subtotal * (orderCharge.amount / 100));
+        }, 0);
+
+        total = subtotal + chargesTotal - discountsTotal;
+
+        self.invoices.find().then(function (invoices) {
+          amount = invoices.reduce(function (sum, invoice) {
+            return sum + invoice.amount;
+          }, 0);
+
+          balance = amount - self.total;
+
+          self.subtotal = subtotal;
+          self.taxesTotal = taxesTotal;
+          self.discountsTotal = discountsTotal;
+          self.chargesTotal = chargesTotal;
+          self.total = total;
+          self.balance = balance;
+
+          if (autosave) {
+            self.save();
+          }
+
+          callback();
+        });
+      });
     });
   }
-
-  Order.observe('before save', function (ctx, next) {
-    ctx.instance.calculateTotals(next);
-  });
-
-  Order.observe('before save', function (ctx, next) {
-    ctx.instance.calculateBalance(next);
-  });
 };
