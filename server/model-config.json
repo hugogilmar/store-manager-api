@@ -107,5 +107,17 @@
   "Email": {
     "dataSource": "mailer",
     "public": false
+  },
+  "Charge": {
+    "dataSource": "database",
+    "public": true
+  },
+  "OrderCharge": {
+    "dataSource": "database",
+    "public": true
+  },
+  "Location": {
+    "dataSource": "database",
+    "public": true
   }
 }

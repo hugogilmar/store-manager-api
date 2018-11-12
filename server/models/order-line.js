@@ -42,7 +42,6 @@ module.exports = function(OrderLine) {
     let total = 0;
     let taxesTotal = 0;
     let discountsTotal = 0;
-    let chargesTotal = 0;
     let price = 0;
 
     app.models.Product.findOne({ where: { id: this.productId } }).then(function (product) {
@@ -51,13 +50,17 @@ module.exports = function(OrderLine) {
       subtotal = price * self.quantity;
       subtotalWithOutTaxes = subtotal / 1.13;
       taxesTotal = subtotal - subtotalWithOutTaxes;
-      total = subtotal + chargesTotal - discountsTotal;
+
+      if (self.discountAmount > 0) {
+        discountsTotal = subtotal * (self.discountAmount / 100);
+      }
+
+      total = subtotal - discountsTotal;
 
       self.price = price;
       self.subtotal = subtotal;
       self.taxesTotal = taxesTotal;
       self.discountsTotal = discountsTotal;
-      self.chargesTotal = chargesTotal;
       self.total = total;
 
       if (autosave) {

@@ -2,7 +2,6 @@ version: "2"
 services:
   db:
     image: mysql:5.7
-    restart: always
     env_file: .env
     ports:
       - 3306:3306
