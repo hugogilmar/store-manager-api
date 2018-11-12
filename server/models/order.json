@@ -67,19 +67,6 @@
       "scale": 2,
       "default": 0
     },
-    "location": {
-      "type": "number",
-      "required": true,
-      "default": 0
-    },
-    "discountAmount": {
-      "type": "number",
-      "required": true,
-      "dataType": "decimal",
-      "precision": 10,
-      "scale": 2,
-      "default": 0
-    },
     "billable": {
       "type": "boolean",
       "required": true
@@ -117,6 +104,11 @@
       "type": "hasMany",
       "model": "OrderCharge",
       "foreignKey": ""
+    },
+    "location": {
+      "type": "belongsTo",
+      "model": "Location",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -134,17 +126,8 @@
     }
   ],
   "methods": {
-    "paymentMethodsReport": {
+    "storesReport": {
       "accepts": [
-        {
-          "arg": "storeId",
-          "type": "number",
-          "required": true,
-          "description": "Store id",
-          "http": {
-            "source": "form"
-          }
-        },
         {
           "arg": "dateFrom",
           "type": "date",
@@ -168,13 +151,13 @@
         {
           "type": "array",
           "root": true,
-          "description": "Order payment methods list"
+          "description": "Order stores list"
         }
       ],
-      "description": "Generate order payment methods report",
+      "description": "Generate order stores report",
       "http": [
         {
-          "path": "/paymentMethodsReport",
+          "path": "/storesReport",
           "verb": "post"
         }
       ]
