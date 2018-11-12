@@ -1,17 +1,21 @@
 {
-  "name": "Invoice",
-  "plural": "invoices",
+  "name": "OrderCharge",
+  "plural": "order_charges",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "referenceNumber": {
-      "type": "number",
-      "required": true
-    },
     "amount": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+      "precision": 10,
+      "scale": 2,
+      "default": 0
+    },
+    "total": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
@@ -27,9 +31,9 @@
       "model": "Order",
       "foreignKey": ""
     },
-    "paymentMethod": {
+    "charge": {
       "type": "belongsTo",
-      "model": "PaymentMethod",
+      "model": "Charge",
       "foreignKey": ""
     }
   },
@@ -48,7 +52,7 @@
     }
   ],
   "methods": {
-    "paymentMethodsReport": {
+    "chargesReport": {
       "accepts": [
         {
           "arg": "storeId",
@@ -82,13 +86,13 @@
         {
           "type": "array",
           "root": true,
-          "description": "Invoice payment methods list"
+          "description": "Order charges list"
         }
       ],
-      "description": "Generate invoice payment methods report",
+      "description": "Generate order charges report",
       "http": [
         {
-          "path": "/paymentMethodsReport",
+          "path": "/chargesReport",
           "verb": "post"
         }
       ]

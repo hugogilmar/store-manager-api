@@ -1,17 +1,17 @@
 {
-  "name": "Employee",
-  "plural": "employees",
+  "name": "Location",
+  "plural": "locations",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
+    "code": {
       "type": "string",
       "required": true
     },
-    "code": {
+    "name": {
       "type": "string",
       "required": true
     }

@@ -20,35 +20,40 @@
       "required": true,
       "dataType": "decimal",
       "precision": 10,
-      "scale": 2
+      "scale": 2,
+      "default": 0
     },
     "taxesTotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
       "precision": 10,
-      "scale": 2
+      "scale": 2,
+      "default": 0
     },
     "discountsTotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
       "precision": 10,
-      "scale": 2
+      "scale": 2,
+      "default": 0
     },
     "chargesTotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
       "precision": 10,
-      "scale": 2
+      "scale": 2,
+      "default": 0
     },
     "subtotal": {
       "type": "number",
       "required": true,
       "dataType": "decimal",
       "precision": 10,
-      "scale": 2
+      "scale": 2,
+      "default": 0
     },
     "status": {
       "type": "number",
@@ -59,7 +64,18 @@
       "required": true,
       "dataType": "decimal",
       "precision": 10,
-      "scale": 2
+      "scale": 2,
+      "default": 0
+    },
+    "billable": {
+      "type": "boolean",
+      "required": true
+    },
+    "comment": {
+      "type": "string"
+    },
+    "guests": {
+      "type": "number"
     }
   },
   "validations": [],
@@ -83,6 +99,16 @@
       "type": "hasMany",
       "model": "Invoice",
       "foreignKey": ""
+    },
+    "orderCharges": {
+      "type": "hasMany",
+      "model": "OrderCharge",
+      "foreignKey": ""
+    },
+    "location": {
+      "type": "belongsTo",
+      "model": "Location",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -99,5 +125,42 @@
       "permission": "DENY"
     }
   ],
-  "methods": {}
+  "methods": {
+    "storesReport": {
+      "accepts": [
+        {
+          "arg": "dateFrom",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "dateTo",
+          "type": "date",
+          "required": true,
+          "description": "Date",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "type": "array",
+          "root": true,
+          "description": "Order stores list"
+        }
+      ],
+      "description": "Generate order stores report",
+      "http": [
+        {
+          "path": "/storesReport",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
