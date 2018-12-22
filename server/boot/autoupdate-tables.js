@@ -2,6 +2,7 @@
 
 module.exports = function(app) {
   var ds = app.dataSources.database;
+  ds.setMaxListeners(0);
 
   var throwError = function (error) {
     if (error) {
