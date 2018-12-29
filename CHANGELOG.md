@@ -1,7 +1,16 @@
 # Changelog
 
+## v0.4.1
+
+- Reset version releases
+
+## v0.4.0
+
+- Memory leaks fixed
+
 ## v0.3.0
 
+- Platform services added
 - Authenticated request for all endpoints
 - Datasources renamed
 - Datasource credentias from .env file
