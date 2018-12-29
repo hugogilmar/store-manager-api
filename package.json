@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
+    "start": "node --max-old-space-size=${NODE_MAX_MEM} . < /dev/null",
     "posttest": "npm run lint && nsp check",
     "console": "loopback-console"
   },
