@@ -2,6 +2,7 @@
 
 ## v0.3.0
 
+- Platform services added
 - Authenticated request for all endpoints
 - Datasources renamed
 - Datasource credentias from .env file
