@@ -4,7 +4,7 @@ module.exports = function(OrderLine) {
   const app = require('../../server/server');
 
   OrderLine.productsReport = function(storeId, dateFrom, dateTo, callback) {
-    var query = "SELECT p.code, p.name, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY p.code, p.name ORDER BY quantity DESC";
+    var query = "SELECT p.code, p.name, ol.billable AS orderLineBillable, o.billable AS orderBillable, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY p.code, p.name, ol.billable, o.billable ORDER BY quantity DESC";
     var params = [storeId, dateFrom, dateTo];
     var data = [];
 
@@ -20,7 +20,7 @@ module.exports = function(OrderLine) {
   };
 
   OrderLine.productCategoriesReport = function(storeId, dateFrom, dateTo, callback) {
-    var query = "SELECT pc.code, pc.name, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id LEFT JOIN `ProductCategory` pc ON p.productCategoryId = pc.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY pc.code, pc.name ORDER BY quantity DESC";
+    var query = "SELECT pc.code, pc.name, ol.billable AS orderLineBillable, o.billable AS orderBillable, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id LEFT JOIN `ProductCategory` pc ON p.productCategoryId = pc.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY pc.code, pc.name, ol.billable, o.billable ORDER BY quantity DESC";
     var params = [storeId, dateFrom, dateTo];
     var data = [];
 
