@@ -75,7 +75,17 @@ module.exports = function(OrderLine) {
     ctx.instance.calculateTotals(next);
   });
 
+  OrderLine.observe('before delete', function (ctx, next) {
+    ctx.instance.calculateTotals(next);
+  });
+
   OrderLine.observe('after save', function (ctx, next) {
+    app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
+      order.calculateTotals(next, true);
+    });
+  });
+
+  OrderLine.observe('after delete', function (ctx, next) {
     app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
       order.calculateTotals(next, true);
     });
