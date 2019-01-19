@@ -19,8 +19,21 @@ module.exports = function(Invoice) {
     });
   };
 
+  Invoice.beforeRemote('deleteById', function (ctx, unused, next) {
+    app.models.Invoice.findOne({ where: { id: ctx.args.id } }).then(function (invoice) {
+      ctx.args.options.orderId = invoice.orderId;
+      next();
+    });
+  });
+
   Invoice.observe('after save', function (ctx, next) {
     app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
+      order.calculateTotals(next, true);
+    });
+  });
+
+  Invoice.observe('after delete', function (ctx, next) {
+    app.models.Order.findOne({ where: { id: ctx.options.orderId } }).then(function (order) {
       order.calculateTotals(next, true);
     });
   });
