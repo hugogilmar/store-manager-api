@@ -4,7 +4,7 @@ module.exports = function(Order) {
   const app = require('../../server/server');
 
   Order.storesReport = function(dateFrom, dateTo, callback) {
-    var query = "SELECT s.name, COUNT(*) AS quantity, SUM(o.total) AS total FROM `Order` o LEFT JOIN `Store` s ON o.storeId = s.id WHERE o.date >= ? AND o.date <= ? GROUP BY s.name ORDER BY quantity DESC";
+    var query = "SELECT s.name, o.billable, COUNT(*) AS quantity, SUM(o.total) AS total FROM `Order` o LEFT JOIN `Store` s ON o.storeId = s.id WHERE o.date >= ? AND o.date <= ? GROUP BY s.name, o.billable ORDER BY quantity DESC";
     var params = [dateFrom, dateTo];
     var data = [];
 

@@ -8,8 +8,7 @@
   },
   "properties": {
     "referenceNumber": {
-      "type": "number",
-      "required": true
+      "type": "string"
     },
     "amount": {
       "type": "number",

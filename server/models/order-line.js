@@ -4,7 +4,7 @@ module.exports = function(OrderLine) {
   const app = require('../../server/server');
 
   OrderLine.productsReport = function(storeId, dateFrom, dateTo, callback) {
-    var query = "SELECT p.code, p.name, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY p.code, p.name ORDER BY quantity DESC";
+    var query = "SELECT p.code, p.name, ol.billable AS orderLineBillable, o.billable AS orderBillable, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY p.code, p.name, ol.billable, o.billable ORDER BY quantity DESC";
     var params = [storeId, dateFrom, dateTo];
     var data = [];
 
@@ -20,7 +20,7 @@ module.exports = function(OrderLine) {
   };
 
   OrderLine.productCategoriesReport = function(storeId, dateFrom, dateTo, callback) {
-    var query = "SELECT pc.code, pc.name, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id LEFT JOIN `ProductCategory` pc ON p.productCategoryId = pc.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY pc.code, pc.name ORDER BY quantity DESC";
+    var query = "SELECT pc.code, pc.name, ol.billable AS orderLineBillable, o.billable AS orderBillable, SUM(ol.quantity) AS quantity, SUM(ol.total) AS total FROM `OrderLine` ol LEFT JOIN `Order` o ON ol.orderId = o.id LEFT JOIN `Product` p ON ol.productId = p.id LEFT JOIN `ProductCategory` pc ON p.productCategoryId = pc.id WHERE o.storeId = ? AND o.date >= ? AND o.date <= ? GROUP BY pc.code, pc.name, ol.billable, o.billable ORDER BY quantity DESC";
     var params = [storeId, dateFrom, dateTo];
     var data = [];
 
@@ -71,12 +71,25 @@ module.exports = function(OrderLine) {
     });
   }
 
+  OrderLine.beforeRemote('deleteById', function (ctx, unused, next) {
+    app.models.OrderLine.findOne({ where: { id: ctx.args.id } }).then(function (orderLine) {
+      ctx.args.options.orderId = orderLine.orderId;
+      next();
+    });
+  });
+
   OrderLine.observe('before save', function (ctx, next) {
     ctx.instance.calculateTotals(next);
   });
 
   OrderLine.observe('after save', function (ctx, next) {
     app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
+      order.calculateTotals(next, true);
+    });
+  });
+
+  OrderLine.observe('after delete', function (ctx, next) {
+    app.models.Order.findOne({ where: { id: ctx.options.orderId } }).then(function (order) {
       order.calculateTotals(next, true);
     });
   });
