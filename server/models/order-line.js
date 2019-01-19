@@ -71,11 +71,14 @@ module.exports = function(OrderLine) {
     });
   }
 
-  OrderLine.observe('before save', function (ctx, next) {
-    ctx.instance.calculateTotals(next);
+  OrderLine.beforeRemote('deleteById', function (ctx, unused, next) {
+    app.models.OrderLine.findOne({ where: { id: ctx.args.id } }).then(function (orderLine) {
+      ctx.args.options.orderId = orderLine.orderId;
+      next();
+    });
   });
 
-  OrderLine.observe('before delete', function (ctx, next) {
+  OrderLine.observe('before save', function (ctx, next) {
     ctx.instance.calculateTotals(next);
   });
 
@@ -86,7 +89,7 @@ module.exports = function(OrderLine) {
   });
 
   OrderLine.observe('after delete', function (ctx, next) {
-    app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
+    app.models.Order.findOne({ where: { id: ctx.options.orderId } }).then(function (order) {
       order.calculateTotals(next, true);
     });
   });
