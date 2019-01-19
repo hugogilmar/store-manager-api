@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.4.2
+
+- Invoice remote method hooks for delete action
+- Order charge remote method hooks for delete action
+- Order line remote method hooks for delete action
+- Allow delete order nested dependencies
+- Split not billable products and orders
+- Alphanumerical invoice number
+- Alphanumerical order number
+
 ## v0.4.1
 
 - Reset version releases
