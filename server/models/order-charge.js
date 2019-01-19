@@ -23,7 +23,7 @@ module.exports = function(OrderCharge) {
     let self = this;
     let amount = 0;
 
-    app.models.Charge.findOne({ where: { id: this.chargetId } }).then(function (charge) {
+    app.models.Charge.findOne({ where: { id: this.chargeId } }).then(function (charge) {
       amount = charge.amount;
 
       self.amount = amount;
@@ -36,11 +36,14 @@ module.exports = function(OrderCharge) {
     });
   }
 
-  OrderCharge.observe('before save', function (ctx, next) {
-    ctx.instance.calculateTotals(next);
+  OrderCharge.beforeRemote('deleteById', function (ctx, unused, next) {
+    app.models.OrderCharge.findOne({ where: { id: ctx.args.id } }).then(function (orderCharge) {
+      ctx.args.options.orderId = orderCharge.orderId;
+      next();
+    });
   });
 
-  OrderCharge.observe('before delete', function (ctx, next) {
+  OrderCharge.observe('before save', function (ctx, next) {
     ctx.instance.calculateTotals(next);
   });
 
@@ -51,7 +54,7 @@ module.exports = function(OrderCharge) {
   });
 
   OrderCharge.observe('after delete', function (ctx, next) {
-    app.models.Order.findOne({ where: { id: ctx.instance.orderId } }).then(function (order) {
+    app.models.Order.findOne({ where: { id: ctx.options.orderId } }).then(function (order) {
       order.calculateTotals(next, true);
     });
   });
