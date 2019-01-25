@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.3
+
+- Guest column on stores report
+
 ## v0.4.2
 
 - Invoice remote method hooks for delete action
