@@ -1,22 +1,44 @@
-version: "2"
+version: '3.5'
 services:
-  db:
-    image: mysql:5.7
-    env_file: .env
+  app:
+    build:
+      context: '.'
+    env_file: '.env'
     ports:
-      - 3306:3306
+      - '3000:3000'
     volumes:
-      - mysql:/var/lib/mysql
-  web:
-    build: ./docker/web
-    user: 'node'
-    env_file: .env
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/home/node/app
+      - '.:/opt/project/app:delegated'
+    entrypoint: '/opt/project/app/docker/entrypoint.sh'
+    command: '/opt/project/app/docker/command.sh'
     depends_on:
-      - db
+      - 'db'
+      - 'web'
+    networks:
+      manager-dev:
+        aliases:
+          - 'api.dev'
+  db:
+    image: 'mysql:5.7'
+    env_file: '.env'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    networks:
+      manager-dev:
+        aliases:
+          - 'db.dev'
+  web:
+    ports:
+      - '80:80'
+    image: 'nginx:1.17'
+    volumes:
+      - './docker/nginx.conf:/etc/nginx/conf.d/default.conf'
+    networks:
+      manager-dev: null
 volumes:
   mysql:
-    driver: local
+    driver: 'local'
+networks:
+  manager-dev:
+    name: 'manager-dev'
